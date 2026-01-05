@@ -1,2 +1,8 @@
-# Code-Lab1-Assessment-2-Vending-machine-Final-work
-Assessment 2 Vending Machine
+#include <iostream> 
+#include <string> 
+#include <iomanip> 
+using namespace std; 
+/* This function displays the menu items available in the vending machine. It helps keep the main program clean and easy to read. */ void showMenu() { 
+    cout << "\n===== Yemi's Cafe =====\n"; cout << "1. Coffee - £2.00\n"; cout << "2. Tea - £1.85\n"; cout << "3. Cola - £1.45\n"; cout << "4. Juice - £1.35\n"; cout << "5. Plantain chips - £1.18\n"; cout << "6. Crisps - £0.89\n"; cout << "7. Jelly beans - £0.85\n"; cout << "8. Cinnamon stick - £0.70\n"; cout << "9. Meal deal - £3.50\n"; } double getPrice(int choice) { switch (choice) { case 1: return 2.00; case 2: return 1.85; case 3: return 1.45; case 4: return 1.35; case 5: return 1.18; case 6: return 0.89; case 7: return 0.85; case 8: return 0.70; case 9: return 3.50; default: return 0.0; } } int main() { int choice; double money; double cost;
+
+string again; cout << "Welcome to Yemi's Cafe!\n"; do { showMenu(); cout << "\nEnter your choice (1-9): "; cin >> choice; while (cin.fail() || choice < 1 || choice > 9) { cin.clear(); cin.ignore(1000, '\n'); cout << "Invalid choice. Please select between 1 and 9: "; cin >> choice; } cost = getPrice(choice); cout << fixed << setprecision(2); cout << "Price: £" << cost << endl; cout << "Enter amount paid: £"; cin >> money; while (cin.fail() || money < cost) { cin.clear(); cin.ignore(1000, '\n'); cout << "Not enough money. Please enter at least £" << cost << ": "; cin >> money; } cout << "Change: £" << (money - cost) << endl; cout << "Would you like to buy another item? (yes/no): "; cin >> again; } while (again == "yes"); cout << "Thank you for using Yemi's Cafe!\n"; return 0; }
